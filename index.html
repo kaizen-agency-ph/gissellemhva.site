@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gisselle Sebuguero · Healthcare Virtual Assistant</title>
+<meta name="description" content="Gisselle Sebuguero — psychology-trained Healthcare Virtual Assistant supporting mental health practices with scheduling, billing, insurance verification and HIPAA-compliant client communication.">
+<link rel="canonical" href="https://gissellemhva.site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gissellemhva.site/">
+<meta property="og:title" content="Gisselle Sebuguero · Healthcare Virtual Assistant">
+<meta property="og:description" content="Psychology-trained virtual assistant for mental health practices: scheduling, billing, insurance verification and HIPAA-compliant client communication.">
+<meta property="og:image" content="https://gissellemhva.site/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBF9FE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23C9B6EE'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='700' text-anchor='middle' fill='%23332E52'%3EG%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#FBF9FE;
+    --surface:#FFFFFF;
+    --ink:#2F2B4C;
+    --ink-soft:#5B5676;
+    --line:#E6E0F3;
+    --lavender:#C9B6EE;
+    --lavender-soft:#EEE7FB;
+    --blush:#F6D3DA;
+    --blush-soft:#FCEEF1;
+    --powder:#CBE1F4;
+    --powder-soft:#EAF3FB;
+    --mint:#CFEBDF;
+    --mint-soft:#EDF8F3;
+    --peach:#FBDFC9;
+    --accent:#6D55B8;      /* deep lavender for links/buttons (AA on white) */
+    --accent-ink:#FFFFFF;
+    --radius:22px;
+    --shadow:0 18px 40px -22px rgba(64,48,120,.35);
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;font-size:17px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:"Lexend",system-ui,sans-serif;font-weight:500;line-height:1.15;letter-spacing:-.01em;margin:0}
+  p{margin:0}
+  a{color:var(--accent)}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:"Lexend";font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;gap:.55em;padding:.85em 1.4em;border-radius:999px;font-family:"Lexend";font-weight:500;font-size:.95rem;text-decoration:none;border:1.5px solid transparent;transition:transform .25s ease, box-shadow .25s ease, background .25s}
+  .btn-primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 10px 24px -12px rgba(109,85,184,.8)}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--surface)}
+  .btn-ghost:hover{border-color:var(--lavender)}
+  .btn svg{width:18px;height:18px}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+  /* NAV */
+  header.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s, box-shadow .3s}
+  header.nav.scrolled{background:rgba(251,249,254,.86);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{font-family:"Lexend";font-weight:600;font-size:1.1rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.6rem}
+  .brand-dot{width:30px;height:30px;border-radius:50%;background:var(--lavender);display:grid;place-items:center;font-size:.85rem}
+  .nav-links{display:flex;gap:1.8rem;align-items:center}
+  .nav-links a{color:var(--ink-soft);text-decoration:none;font-size:.95rem;font-weight:600}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links .btn{color:var(--accent-ink)}
+  @media (max-width:820px){.nav-links a:not(.btn){display:none}}
+
+  /* HERO */
+  .hero{position:relative;min-height:min(100vh,960px);padding:120px 0 80px;overflow:hidden;display:flex;align-items:center}
+  .hero-bg{position:absolute;inset:-10% -5% -10% -5%;background:url(assets/petals.jpg) center/cover no-repeat;opacity:.55;z-index:0}
+  .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.9rem);font-weight:500;margin:18px 0 22px}
+  .hero h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+  .hero h1 em::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.05em;height:.32em;background:var(--blush);z-index:-1;border-radius:6px}
+  .hero .lede{font-size:1.15rem;color:var(--ink-soft);max-width:520px}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:44px}
+  .hero-meta div{font-size:.9rem;color:var(--ink-soft)}
+  .hero-meta strong{display:block;font-family:"Lexend";font-weight:500;font-size:1.5rem;color:var(--ink)}
+  .portrait-stage{position:relative;height:620px;max-width:480px;justify-self:end;width:100%}
+  .blob-wrap{position:absolute;will-change:transform;border-radius:50%}
+  .blob{width:100%;height:100%;border-radius:inherit;background:var(--c);will-change:transform}
+  .blob-a{width:400px;height:400px;--c:var(--lavender);left:calc(50% - 200px);top:calc(48% - 200px);border-radius:46% 54% 50% 50%/52% 46% 54% 48%}
+  .blob-b{width:160px;height:160px;--c:var(--powder);right:0;top:8%}
+  .blob-c{width:110px;height:110px;--c:var(--peach);left:4%;bottom:14%}
+  .portrait-cut{position:absolute;bottom:0;left:0;right:0;margin:0 auto;width:92%;max-width:440px;height:auto;z-index:2;filter:drop-shadow(0 30px 30px rgba(64,48,120,.18));
+    -webkit-mask-image:linear-gradient(to bottom,#000 86%,transparent 100%);mask-image:linear-gradient(to bottom,#000 86%,transparent 100%)}
+  .chip{position:absolute;z-index:3;background:var(--surface);border-radius:16px;padding:10px 14px;box-shadow:var(--shadow);font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:10px;white-space:nowrap}
+  .chip i{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-style:normal}
+  .chip svg{width:16px;height:16px}
+  .chip-1{left:-6%;top:22%}.chip-1 i{background:var(--mint)}
+  .chip-2{right:-4%;top:48%}.chip-2 i{background:var(--blush)}
+  .chip-3{left:0;bottom:12%}.chip-3 i{background:var(--powder)}
+  @media (max-width:900px){
+    .hero{padding-top:100px}
+    .hero-grid{grid-template-columns:1fr}
+    .portrait-stage{justify-self:center;height:480px}
+    .blob-a{width:300px;height:300px;left:calc(50% - 150px);top:calc(48% - 150px)}
+    .chip-1{left:0}.chip-2{right:0}
+  }
+
+  /* STRIP */
+  .strip{background:var(--ink);color:#F3EFFD;overflow:hidden;padding:18px 0}
+  .strip-track{display:flex;gap:44px;white-space:nowrap;font-family:"Lexend";font-weight:300;font-size:1.05rem;width:max-content}
+  .strip-track span{display:inline-flex;align-items:center;gap:44px}
+  .strip-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--lavender)}
+
+  section{position:relative}
+  .section{padding:120px 0}
+  .section-head{max-width:640px;margin-bottom:56px}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin-top:12px}
+  .section-head p{margin-top:16px;color:var(--ink-soft);font-size:1.08rem}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:72px;align-items:center}
+  .about-visual{position:relative;height:560px}
+  .about-room{position:absolute;inset:0 18% 12% 0;border-radius:200px 200px var(--radius) var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .about-room img{width:100%;height:118%;object-fit:cover;will-change:transform}
+  .about-photo{position:absolute;right:0;bottom:0;width:48%;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;border:8px solid var(--surface);box-shadow:var(--shadow);background:var(--blush-soft)}
+  .about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+  .about-copy p+p{margin-top:18px}
+  .about-copy p{color:var(--ink-soft)}
+  .about-copy .big{font-family:"Lexend";font-weight:400;font-size:1.35rem;line-height:1.45;color:var(--ink)}
+  .values{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+  .value{padding:18px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+  .value h4{font-size:.98rem;margin:10px 0 4px}
+  .value p{font-size:.88rem;line-height:1.5}
+  .value .ico{width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+  .value .ico svg{width:18px;height:18px}
+  @media (max-width:900px){
+    .about-grid{grid-template-columns:1fr;gap:48px}
+    .about-visual{height:440px}
+    .values{grid-template-columns:1fr}
+  }
+
+  /* SERVICES */
+  .services{background:var(--lavender-soft)}
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+  .card{background:var(--surface);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden}
+  .card h3{font-size:1.2rem;margin:16px 0 8px}
+  .card p{color:var(--ink-soft);font-size:.96rem}
+  .card .ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
+  .card .ico svg{width:22px;height:22px}
+  .card ul{margin:14px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .card li{font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--bg);color:var(--ink-soft)}
+  .c-sched{grid-column:span 7;display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:0}
+  .c-sched .txt{padding:32px 0 32px 32px}
+  .c-sched .img{background:url(assets/planner.jpg) center/cover;min-height:300px}
+  .c-bill{grid-column:span 5;background:var(--blush-soft)}
+  .c-comm{grid-column:span 4;background:var(--mint-soft)}
+  .c-case{grid-column:span 4}
+  .c-hr{grid-column:span 4;background:var(--powder-soft)}
+  .c-desk{grid-column:span 12;display:grid;grid-template-columns:1.2fr 1fr;padding:0;min-height:320px;background:var(--ink);color:#F3EFFD}
+  .c-desk .img{background:url(assets/desk.jpg) center/cover}
+  .c-desk .txt{padding:44px}
+  .c-desk h3{font-size:1.6rem;color:#fff}
+  .c-desk p{color:#D8D2EE}
+  .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .tools span{padding:8px 14px;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:.88rem;font-weight:600}
+  @media (max-width:900px){
+    .bento>*{grid-column:span 12 !important}
+    .c-sched,.c-desk{grid-template-columns:1fr}
+    .c-sched .txt{padding:28px 28px 0}
+    .c-sched .img{min-height:240px}
+    .c-desk .img{min-height:220px}
+    .c-desk .txt{padding:30px}
+  }
+
+  /* EXPERIENCE */
+  .timeline{position:relative;max-width:860px}
+  .timeline::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--lavender),var(--blush),var(--powder),var(--mint))}
+  .role{position:relative;padding-left:52px;padding-bottom:44px}
+  .role:last-child{padding-bottom:0}
+  .role .dot{position:absolute;left:0;top:4px;width:24px;height:24px;border-radius:50%;background:var(--surface);border:6px solid var(--lavender)}
+  .role:nth-child(2) .dot{border-color:var(--blush)}
+  .role:nth-child(3) .dot{border-color:var(--powder)}
+  .role:nth-child(4) .dot{border-color:var(--mint)}
+  .role:nth-child(5) .dot{border-color:var(--peach)}
+  .role-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;align-items:baseline}
+  .role h3{font-size:1.3rem}
+  .role .when{font-family:"Lexend";font-size:.85rem;color:var(--ink-soft);background:var(--lavender-soft);padding:4px 12px;border-radius:999px}
+  .role .org{font-weight:700;color:var(--accent);margin:4px 0 10px}
+  .role p{color:var(--ink-soft);max-width:680px}
+  .exp-layout{display:grid;grid-template-columns:1fr 300px;gap:60px;align-items:start}
+  .exp-aside{position:sticky;top:110px;display:grid;gap:18px}
+  .aside-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .aside-card h4{font-size:1rem;margin-bottom:14px}
+  .edu{padding:10px 0;border-top:1px dashed var(--line)}
+  .edu:first-of-type{border-top:0;padding-top:0}
+  .edu strong{display:block;font-family:"Lexend";font-weight:500}
+  .edu span{font-size:.9rem;color:var(--ink-soft)}
+  .langs{display:flex;gap:8px}
+  .langs span{padding:6px 14px;border-radius:999px;background:var(--mint-soft);font-weight:700;font-size:.88rem}
+  @media (max-width:900px){.exp-layout{grid-template-columns:1fr}.exp-aside{position:static}}
+
+  /* CONTACT */
+  .contact{padding:40px 0 120px}
+  .contact-card{position:relative;border-radius:36px;overflow:hidden;background:var(--blush-soft);padding:72px 64px;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+  .contact-card::before{content:"";position:absolute;inset:0;background:url(assets/petals.jpg) center/cover;opacity:.45}
+  .contact-card>*{position:relative}
+  .contact-card h2{font-size:clamp(1.9rem,3.8vw,3rem);margin:12px 0 18px}
+  .contact-card p{color:var(--ink-soft);max-width:520px}
+  .mail{font-family:"Lexend";font-size:clamp(1rem,2.2vw,1.25rem);color:var(--ink);word-break:break-all}
+  .contact-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .contact-side{display:grid;gap:12px}
+  .contact-side div{background:rgba(255,255,255,.8);border-radius:18px;padding:16px 18px;font-size:.92rem}
+  .contact-side strong{display:block;font-family:"Lexend";font-weight:500;font-size:1rem}
+  .copied{font-size:.85rem;color:var(--accent);min-height:1.2em;margin-top:10px}
+  @media (max-width:900px){.contact-card{grid-template-columns:1fr;padding:44px 26px;border-radius:28px}}
+
+  footer{padding:30px 0 40px;color:var(--ink-soft);font-size:.9rem}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:26px}
+
+  /* reveal initial state only when JS + motion allowed */
+  .js-motion [data-reveal]{opacity:0}
+  @media (max-width:480px){body{font-size:16px}.wrap{padding:0 16px}.section{padding:88px 0}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="brand-dot">G</span>Gisselle Sebuguero</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a class="btn btn-primary" href="#contact">Let's talk</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" data-parallax="0.25" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-hero>Healthcare Virtual Assistant · Mental Health Practices</p>
+        <h1 data-hero>Calm, organized support for practices that <em>care for minds.</em></h1>
+        <p class="lede" data-hero>I'm Gisselle, a psychology-trained virtual assistant who keeps your schedule, billing and client communication running smoothly, so your clinicians can focus on care.</p>
+        <div class="hero-ctas" data-hero>
+          <a class="btn btn-primary" href="mailto:gisselle.sebuguero@gmail.com?subject=Hello%20Gisselle%20%E2%80%94%20VA%20inquiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+            Email me
+          </a>
+          <a class="btn btn-ghost" href="#experience">View experience</a>
+        </div>
+        <div class="hero-meta" data-hero>
+          <div><strong data-count="3">3+</strong>years in healthcare admin</div>
+          <div><strong>BA · MS</strong>Psychology background</div>
+          <div><strong>HIPAA</strong>compliant communication</div>
+        </div>
+      </div>
+
+      <div class="portrait-stage" aria-hidden="false">
+        <div class="blob-wrap blob-a" data-parallax="-0.08"><div class="blob" data-float></div></div>
+        <div class="blob-wrap blob-b" data-parallax="0.18"><div class="blob" data-float></div></div>
+        <div class="blob-wrap blob-c" data-parallax="0.3"><div class="blob" data-float></div></div>
+        <img class="portrait-cut" src="assets/cutout-blazer.webp" alt="Portrait of Gisselle Sebuguero in a white blazer" width="1100" height="1467" data-parallax="-0.04">
+        <div class="chip chip-1" data-chip data-parallax="0.12"><i><svg viewBox="0 0 24 24" fill="none" stroke="#2F2B4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></i>Scheduling &amp; calendars</div>
+        <div class="chip chip-2" data-chip data-parallax="0.2"><i><svg viewBox="0 0 24 24" fill="none" stroke="#2F2B4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></i>HIPAA-compliant</div>
+        <div class="chip chip-3" data-chip data-parallax="0.08"><i><svg viewBox="0 0 24 24" fill="none" stroke="#2F2B4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></i>Theranest · TherapyNotes</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true">
+    <div class="strip-track" id="strip">
+      <span>Scheduling &amp; Calendar Management</span><span>Medical Billing</span><span>Insurance Verification</span><span>Client Communication</span><span>Case Management</span><span>Appointment Coordination</span><span>Recruitment &amp; HR</span>
+      <span>Scheduling &amp; Calendar Management</span><span>Medical Billing</span><span>Insurance Verification</span><span>Client Communication</span><span>Case Management</span><span>Appointment Coordination</span><span>Recruitment &amp; HR</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-visual" data-reveal>
+        <div class="about-room"><img src="assets/room.jpg" alt="A calm pastel therapy waiting room with an armchair and plants" data-parallax-inner="0.12"></div>
+        <div class="about-photo" data-parallax="-0.06"><img src="assets/cutout-coat.webp" alt="Gisselle in a white coat, smiling"></div>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow" data-reveal>About me</p>
+        <h2 style="margin:12px 0 22px;font-size:clamp(1.9rem,3.6vw,2.8rem)" data-reveal>A psychology background behind every booking.</h2>
+        <p class="big" data-reveal>Reliable and detail-oriented, I bring over 3 years of healthcare admin support to mental health practices, specializing in scheduling, billing and insurance verification.</p>
+        <p data-reveal>Before working remotely, I spent years on the clinical side as a psychometrician: administering psychological assessments, supporting treatment plans and managing cases at a Department of Health rehabilitation center and a city social welfare office. That experience shapes how I work with your clients: with patience, discretion and respect.</p>
+        <p data-reveal>Based in Bukidnon, Philippines, I work in English and Filipino and I'm dedicated to streamlining operations and helping practices deliver exceptional care.</p>
+        <div class="values">
+          <div class="value" data-reveal>
+            <div class="ico" style="background:var(--lavender-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#6D55B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div>
+            <h4>Compassionate</h4><p>Client-facing communication grounded in mental health training.</p>
+          </div>
+          <div class="value" data-reveal>
+            <div class="ico" style="background:var(--mint-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#3E8A6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+            <h4>Confidential</h4><p>HIPAA-compliant handling of client information.</p>
+          </div>
+          <div class="value" data-reveal>
+            <div class="ico" style="background:var(--powder-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#3D6E9C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div>
+            <h4>Organized</h4><p>Clean calendars, documents and data you can trust.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>How I can help</p>
+        <h2 data-reveal>The front-desk and back-office work, handled gently.</h2>
+        <p data-reveal>Support for therapists, counselors and mental health clinics, built from hands-on experience with US behavioral health and neuropsychology practices.</p>
+      </div>
+
+      <div class="bento">
+        <article class="card c-sched" data-reveal>
+          <div class="txt">
+            <div class="ico" style="background:var(--lavender-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="#6D55B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18M8 14h3"/></svg></div>
+            <h3>Scheduling &amp; appointment coordination</h3>
+            <p>Calendar management for clinicians, booking and rescheduling sessions, and keeping clients informed.</p>
+            <ul><li>Calendars</li><li>Appointments</li><li>Rescheduling</li></ul>
+          </div>
+          <div class="img" role="img" aria-label="Pastel color-coded weekly planner with chamomile tea"></div>
+        </article>
+
+        <article class="card c-bill" data-reveal>
+          <div class="ico" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#B0506A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></svg></div>
+          <h3>Medical billing &amp; insurance verification</h3>
+          <p>Mental health billing, insurance verification, claims processing and follow-up, and payment coordination, so claims move smoothly and accurately.</p>
+          <ul><li>Insurance verification</li><li>Claims processing</li><li>Payment coordination</li></ul>
+        </article>
+
+        <article class="card c-comm" data-reveal>
+          <div class="ico" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#3E8A6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8"/></svg></div>
+          <h3>Client communication</h3>
+          <p>Warm, HIPAA-compliant replies and coordination between clients, clinicians and providers.</p>
+        </article>
+
+        <article class="card c-case" data-reveal>
+          <div class="ico" style="background:var(--peach)"><svg viewBox="0 0 24 24" fill="none" stroke="#A05E2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v12H4z"/><path d="M9 7V5h6v2"/></svg></div>
+          <h3>Case management &amp; admin</h3>
+          <p>Document and data organization, records upkeep and the day-to-day admin that keeps a practice calm.</p>
+        </article>
+
+        <article class="card c-hr" data-reveal>
+          <div class="ico" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#3D6E9C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 11h5M18.5 8.5v5"/></svg></div>
+          <h3>Recruitment &amp; HR assistance</h3>
+          <p>Recruitment support, HR communications, internal memos and team-building coordination, backed by prior HR experience.</p>
+        </article>
+
+        <article class="card c-desk" data-reveal>
+          <div class="img" role="img" aria-label="Pastel home office with laptop calendar, headphones and tea"></div>
+          <div class="txt">
+            <p class="eyebrow" style="color:var(--lavender)">Tools I use daily</p>
+            <h3 style="margin-top:12px">Comfortable in your practice's systems.</h3>
+            <p style="margin-top:10px">Hands-on with therapy-focused EHRs and the workspace tools remote teams rely on.</p>
+            <div class="tools"><span>Theranest</span><span>TherapyNotes</span><span>EHR systems</span><span>Google Workspace</span><span>Docs &amp; Sheets</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Experience</p>
+        <h2 data-reveal>From clinical settings to remote practice support.</h2>
+      </div>
+      <div class="exp-layout">
+        <div class="timeline">
+          <div class="role" data-reveal>
+            <span class="dot"></span>
+            <div class="role-top"><h3>Medical Billing Virtual Assistant</h3><span class="when">2026 – Present</span></div>
+            <p class="org">Private Neuropsychology Practice (USA)</p>
+            <p>Manage mental health billing, insurance verification, claims processing and payment coordination while maintaining HIPAA compliance. Support accurate billing workflows and coordinate with clinicians, insurance providers and clients.</p>
+          </div>
+          <div class="role" data-reveal>
+            <span class="dot"></span>
+            <div class="role-top"><h3>Clinical Admin Virtual Assistant</h3><span class="when">2022 – Present</span></div>
+            <p class="org">Behavioral Health Practice (USA)</p>
+            <p>Manage scheduling, billing, insurance verification and claims follow-up while maintaining HIPAA compliance. Coordinate with clients, clinicians and insurance providers to support smooth and efficient practice operations.</p>
+          </div>
+          <div class="role" data-reveal>
+            <span class="dot"></span>
+            <div class="role-top"><h3>Psychometrician</h3><span class="when">2019 – 2022</span></div>
+            <p class="org">Department of Health: Drug Abuse Treatment and Rehabilitation Center</p>
+            <p>Administered psychological assessments, created treatment plans and provided counseling to clients. Managed cases and facilitated psychoeducation to support recovery and rehabilitation.</p>
+          </div>
+          <div class="role" data-reveal>
+            <span class="dot"></span>
+            <div class="role-top"><h3>Psychometrician</h3><span class="when">2018 – 2019</span></div>
+            <p class="org">City Social Welfare and Development, Psychosocial Division</p>
+            <p>Conducted psychological evaluations and monitored client progress in social welfare programs. Supervised interns, facilitated workshops and promoted mental health awareness.</p>
+          </div>
+          <div class="role" data-reveal>
+            <span class="dot"></span>
+            <div class="role-top"><h3>Human Resource Staff</h3><span class="when">2017 – 2018</span></div>
+            <p class="org">McAlba Foods Corporation</p>
+            <p>Handled recruitment, payroll preparation and employee performance evaluations. Coordinated HR communications, internal memos and team-building activities.</p>
+          </div>
+        </div>
+
+        <aside class="exp-aside">
+          <div class="aside-card" data-reveal>
+            <h4>Education</h4>
+            <div class="edu"><strong>MS Psychology</strong><span>University of Mindanao · 2021 (18 units)</span></div>
+            <div class="edu"><strong>BA Psychology</strong><span>Central Mindanao University · 2016</span></div>
+          </div>
+          <div class="aside-card" data-reveal>
+            <h4>Languages</h4>
+            <div class="langs"><span>English</span><span>Filipino</span></div>
+          </div>
+          <div class="aside-card" data-reveal>
+            <h4>References</h4>
+            <p style="font-size:.92rem;color:var(--ink-soft)">Professional references available on request.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-card" data-reveal>
+        <div>
+          <p class="eyebrow">Let's work together</p>
+          <h2>Give your practice a little more breathing room.</h2>
+          <p>Tell me about your practice and where you need support. I'll get back to you by email.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:gisselle.sebuguero@gmail.com?subject=Hello%20Gisselle%20%E2%80%94%20VA%20inquiry">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+              Send an email
+            </a>
+            <button class="btn btn-ghost" type="button" id="copyEmail">Copy email address</button>
+          </div>
+          <p class="copied" id="copied" role="status" aria-live="polite"></p>
+        </div>
+        <div class="contact-side">
+          <div><strong>Email</strong><a class="mail" href="mailto:gisselle.sebuguero@gmail.com">gisselle.sebuguero@gmail.com</a></div>
+          <div><strong>Location</strong>Bukidnon, Philippines · Remote</div>
+          <div><strong>Languages</strong>English · Filipino</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Gisselle Sebuguero · Healthcare Virtual Assistant</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script>
+(function(){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav background on scroll
+  var nav = document.getElementById('nav');
+  function navState(){ nav.classList.toggle('scrolled', window.scrollY > 20); }
+  navState(); window.addEventListener('scroll', navState, {passive:true});
+
+  // copy email
+  var copyBtn = document.getElementById('copyEmail'), copied = document.getElementById('copied');
+  copyBtn.addEventListener('click', function(){
+    var email = 'gisselle.sebuguero@gmail.com';
+    (navigator.clipboard ? navigator.clipboard.writeText(email) : Promise.reject())
+      .then(function(){ copied.textContent = 'Copied! ' + email; })
+      .catch(function(){ copied.textContent = email; });
+  });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || typeof anime === 'undefined') return;   // content is fully visible without motion
+  document.documentElement.classList.add('js-motion');
+
+  // Hero entrance
+  anime.timeline({easing:'easeOutCubic'})
+    .add({targets:'.blob-wrap', opacity:[0,1], duration:1100, delay:anime.stagger(120)})
+    .add({targets:'.portrait-cut', translateY:[40,0], opacity:[0,1], duration:1000}, '-=800')
+    .add({targets:'[data-hero]', translateY:[24,0], opacity:[0,1], duration:800, delay:anime.stagger(110)}, '-=900')
+    .add({targets:'[data-chip]', scale:[0.85,1], opacity:[0,1], duration:600, delay:anime.stagger(140)}, '-=500');
+
+  // Gentle floating blobs (small, slow)
+  document.querySelectorAll('[data-float]').forEach(function(el, i){
+    anime({targets:el, keyframes:[{rotate:6, scale:1.03},{rotate:-4, scale:0.98},{rotate:0, scale:1}],
+      duration:9000 + i*1800, easing:'easeInOutSine', loop:true, direction:'alternate'});
+  });
+
+  // Infinite skills strip
+  var strip = document.getElementById('strip');
+  anime({targets:strip, translateX:[0, -strip.scrollWidth/2], duration:38000, easing:'linear', loop:true});
+
+  // Scroll parallax (anime.set on rAF — translateY only, composited)
+  var layers = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  var inner = [].slice.call(document.querySelectorAll('[data-parallax-inner]'));
+  var ticking = false;
+  function parallax(){
+    var vh = window.innerHeight;
+    layers.forEach(function(el){
+      var r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var center = r.top + r.height/2 - vh/2;
+      // wrapper div for elements that already use transform in CSS
+      anime.set(el, {translateY: -center * parseFloat(el.dataset.parallax)});
+    });
+    inner.forEach(function(el){
+      var r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      var p = (r.top + r.height) / (vh + r.height); // 1 → 0 as it scrolls through
+      anime.set(el, {translateY: -(1-p) * r.height * parseFloat(el.dataset.parallaxInner)});
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(parallax); } }, {passive:true});
+  window.addEventListener('resize', parallax);
+  parallax();
+
+  // Scroll reveals
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      anime({targets:e.target, opacity:[0,1], translateY:[28,0], duration:900, easing:'easeOutCubic',
+        delay: (e.target.dataset.revealIndex || 0) * 90});
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+  // stagger siblings in the same parent
+  var groups = new Map();
+  document.querySelectorAll('[data-reveal]').forEach(function(el){
+    var p = el.parentElement, n = groups.get(p) || 0;
+    el.dataset.revealIndex = n; groups.set(p, n + 1);
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
